@@ -38,7 +38,7 @@ export default function Contact() {
                   </span>
                   <div>
                     <p className="font-semibold mb-0.5">Address</p>
-                    <p className="text-cream/65 text-sm">Lahore, Pakistan <span className="text-cream/40">(full address on request)</span></p>
+                    <p className="text-cream/65 text-sm">Nadir Chowk, Ruhi Nala Road, Gajjumatta, Lahore, Pakistan</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -47,7 +47,7 @@ export default function Contact() {
                   </span>
                   <div>
                     <p className="font-semibold mb-0.5">Phone</p>
-                    <p className="text-cream/65 text-sm">+92-XXX-XXXXXXX</p>
+                    <p className="text-cream/65 text-sm">+92 323 5292333</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -61,12 +61,15 @@ export default function Contact() {
                 </li>
               </ul>
 
-              <div className="rounded-2xl overflow-hidden aspect-[4/3] relative bg-indigo-dark/60 flex items-center justify-center ring-1 ring-cream/10">
-                <img src="/images/pretreatment-machine.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
-                <div className="relative flex flex-col items-center gap-2 text-cream/70 text-sm">
-                  <IconPin className="h-6 w-6" />
-                  Map coming soon
-                </div>
+              <div className="rounded-2xl overflow-hidden aspect-[4/3] relative ring-1 ring-cream/10">
+                <iframe
+                  title="Legacy Textile Solutions location"
+                  src="https://maps.google.com/maps?q=Nadir+Chowk%2C+Ruhi+Nala+Road%2C+Gajjumatta%2C+Lahore%2C+Pakistan&output=embed"
+                  className="absolute inset-0 h-full w-full grayscale-[30%] contrast-[1.05]"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
           </Reveal>

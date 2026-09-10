@@ -58,11 +58,11 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-cream/70">
             <li className="flex items-start gap-2.5">
               <IconPin className="h-4 w-4 mt-0.5 shrink-0 text-terracotta-light" />
-              <span>Lahore, Pakistan <em className="not-italic text-cream/40">(full address on request)</em></span>
+              <span>Nadir Chowk, Ruhi Nala Road, Gajjumatta, Lahore, Pakistan</span>
             </li>
             <li className="flex items-center gap-2.5">
               <IconPhone className="h-4 w-4 shrink-0 text-terracotta-light" />
-              <span className="text-cream/40">+92-XXX-XXXXXXX</span>
+              <span>+92 323 5292333</span>
             </li>
             <li className="flex items-center gap-2.5">
               <IconMail className="h-4 w-4 shrink-0 text-terracotta-light" />
