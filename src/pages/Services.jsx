@@ -72,7 +72,7 @@ export default function Services() {
       {PROCESSES.map((p, i) => {
         const nextColor = PROCESSES[i + 1] ? PROCESSES[i + 1].deep : INK;
         return (
-          <section key={p.title} className="relative overflow-hidden" style={{ backgroundColor: p.deep }}>
+          <section id={p.title.toLowerCase()} key={p.title} className="relative overflow-hidden scroll-mt-24" style={{ backgroundColor: p.deep }}>
             <div
               className="pointer-events-none absolute -top-24 h-80 w-80 rounded-full blur-[110px] opacity-40"
               style={{ backgroundColor: p.color, [i % 2 === 1 ? "right" : "left"]: "-6rem" }}

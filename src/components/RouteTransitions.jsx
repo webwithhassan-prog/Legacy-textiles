@@ -6,7 +6,7 @@ import { gsap, ScrollTrigger } from "../lib/gsap";
 // ScrollTrigger recalculate pin/trigger positions once the new page's
 // layout has settled.
 export default function RouteTransitions() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const isFirst = useRef(true);
 
   useEffect(() => {
@@ -32,29 +32,39 @@ export default function RouteTransitions() {
     // animations could interrupt each other and settle at a random
     // in-between scroll position instead of 0. Forcing "instant" makes each
     // reset atomic, so there's nothing for a later call to interrupt.
-    const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    // A hash (e.g. from the Services mega-menu linking to /services#dyeing)
+    // scrolls to that section instead of the top — scrollIntoView respects
+    // the section's own scroll-margin-top, so it lands clear of the navbar.
+    const scrollToTarget = () => {
+      const el = hash && document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "instant", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    };
 
-    toTop();
+    scrollToTarget();
 
     // refresh() has to stay deferred to the next frame — calling it
     // synchronously here can run before other components (e.g. the flask's
     // pinned ScrollTrigger) have set themselves up on first mount. But
     // refresh() itself recalculates pin geometry for any trigger left
     // behind by the page we just navigated away from, and was *itself*
-    // moving the scroll position — so scrollTo has to run again AFTER it,
-    // in the same frame, not before. The try/catch is a safety net for a
+    // moving the scroll position — so scrollToTarget has to run again AFTER
+    // it, in the same frame, not before. The try/catch is a safety net for a
     // GSAP-internal null-ref that only reproduces under React StrictMode's
     // dev-only double-mount (production builds don't double-invoke effects).
     const id = requestAnimationFrame(() => {
       try {
         ScrollTrigger.refresh();
       } catch {
-        // see comment above — safe to ignore, toTop() below still runs
+        // see comment above — safe to ignore, scrollToTarget() below still runs
       }
-      toTop();
+      scrollToTarget();
     });
     return () => cancelAnimationFrame(id);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }
