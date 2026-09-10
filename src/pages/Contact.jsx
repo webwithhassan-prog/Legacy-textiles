@@ -2,12 +2,22 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
-import { IconArrowRight, IconMail, IconPhone, IconPin } from "../components/icons";
+import {
+  IconArrowRight,
+  IconMail,
+  IconPhone,
+  IconPin,
+} from "../components/icons";
 
 export default function Contact() {
   const location = useLocation();
   const [status, setStatus] = useState("idle"); // idle | sent
-  const [form, setForm] = useState({ name: "", company: "", email: location.state?.email || "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    email: location.state?.email || "",
+    message: "",
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +39,9 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-[1fr_1.1fr] gap-14">
           <Reveal>
             <div className="rounded-[2rem] bg-indigo text-cream p-9 sm:p-10">
-              <h2 className="font-display font-semibold text-2xl mb-8">Reach us directly</h2>
+              <h2 className="font-display font-semibold text-2xl mb-8">
+                Reach us directly
+              </h2>
 
               <ul className="space-y-6 mb-10">
                 <li className="flex items-start gap-4">
@@ -38,7 +50,9 @@ export default function Contact() {
                   </span>
                   <div>
                     <p className="font-semibold mb-0.5">Address</p>
-                    <p className="text-cream/65 text-sm">Nadir Chowk, Ruhi Nala Road, Gajjumatta, Lahore, Pakistan</p>
+                    <p className="text-cream/65 text-sm">
+                      Nadir Chowk, Ruhi Nala Road, Gajjumatta, Lahore, Pakistan
+                    </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -56,7 +70,9 @@ export default function Contact() {
                   </span>
                   <div>
                     <p className="font-semibold mb-0.5">Email</p>
-                    <p className="text-cream/65 text-sm">info@legacy-textiles.com</p>
+                    <p className="text-cream/65 text-sm">
+                      info@legacy-textiles.com
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -81,10 +97,13 @@ export default function Contact() {
                   <div className="h-16 w-16 rounded-full bg-teal/15 text-teal flex items-center justify-center mb-6">
                     <IconMail className="h-8 w-8" />
                   </div>
-                  <h3 className="font-display font-semibold text-2xl text-ink mb-3">Message received</h3>
+                  <h3 className="font-display font-semibold text-2xl text-ink mb-3">
+                    Message received
+                  </h3>
                   <p className="text-ink/60 max-w-sm">
-                    Thanks, {form.name.split(" ")[0] || "there"} — our team will get back to you
-                    shortly about {form.company ? form.company : "your enquiry"}.
+                    Thanks, {form.name.split(" ")[0] || "there"} — our team will
+                    get back to you shortly about{" "}
+                    {form.company ? form.company : "your enquiry"}.
                   </p>
                 </div>
               ) : (
@@ -94,15 +113,19 @@ export default function Contact() {
                       <input
                         required
                         value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, name: e.target.value })
+                        }
                         className="input"
-                        placeholder="Ayesha Khan"
+                        placeholder="Name"
                       />
                     </Field>
                     <Field label="Company">
                       <input
                         value={form.company}
-                        onChange={(e) => setForm({ ...form, company: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, company: e.target.value })
+                        }
                         className="input"
                         placeholder="Your mill / brand"
                       />
@@ -113,7 +136,9 @@ export default function Contact() {
                       required
                       type="email"
                       value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
                       className="input"
                       placeholder="you@company.com"
                     />
@@ -123,7 +148,9 @@ export default function Contact() {
                       required
                       rows={5}
                       value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, message: e.target.value })
+                      }
                       className="input resize-none"
                       placeholder="Tell us about your fabric, process and what you need..."
                     />
@@ -132,7 +159,8 @@ export default function Contact() {
                     type="submit"
                     className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-cream font-semibold px-8 py-3.5 hover:bg-terracotta-light transition-all hover:gap-3"
                   >
-                    Send message <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    Send message{" "}
+                    <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </form>
               )}
