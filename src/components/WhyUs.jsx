@@ -33,7 +33,7 @@ export default function WhyUs() {
     <section className="relative py-28 bg-cream-soft overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
         <div ref={imgRef} className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/5]">
-          <img src="/images/about-fabric.jpg" alt="Hand-dyed fabric swatches" className="h-full w-full object-cover" />
+          <img src="/images/about-fabric.jpg" alt="Hand-dyed fabric swatches" loading="lazy" decoding="async" className="h-full w-full object-cover" />
         </div>
 
         <div>

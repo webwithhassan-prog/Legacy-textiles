@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "../lib/gsap";
 
-export default function PageHero({ eyebrow, title, subtitle, image }) {
+export default function PageHero({ eyebrow, title, subtitle, image, imageAlt = "" }) {
   const ref = useRef(null);
 
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ export default function PageHero({ eyebrow, title, subtitle, image }) {
       {image && (
         <div className="relative max-w-6xl mx-auto px-6 lg:px-10 mt-14">
           <div className="rounded-[2rem] overflow-hidden shadow-2xl aspect-[16/7]">
-            <img src={image} alt="" className="h-full w-full object-cover" />
+            <img src={image} alt={imageAlt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
         </div>
       )}

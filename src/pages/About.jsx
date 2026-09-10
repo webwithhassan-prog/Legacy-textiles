@@ -18,6 +18,7 @@ export default function About() {
         title="Chemical partners for textile success"
         subtitle="A part of Legacy Group of Industries — we exist to make manufacturers' dyeing, printing, pretreatment and finishing processes more reliable, one formulation at a time."
         image="/images/pretreatment-machine.jpg"
+        imageAlt="Yarn cones on pretreatment machinery"
       />
 
       <section className="py-24 bg-cream">
@@ -93,10 +94,10 @@ export default function About() {
 
           <div className="grid lg:grid-cols-2 gap-6">
             <Reveal className="rounded-[2rem] overflow-hidden shadow-xl aspect-[4/3]">
-              <img src="/images/finishing-fabric.jpg" alt="Finished embroidered textile" className="h-full w-full object-cover" />
+              <img src="/images/finishing-fabric.jpg" alt="Finished embroidered textile" loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </Reveal>
             <Reveal delay={0.1} className="rounded-[2rem] overflow-hidden shadow-xl aspect-[4/3]">
-              <img src="/images/printing-fabric.jpg" alt="Printed fabric detail" className="h-full w-full object-cover" />
+              <img src="/images/printing-fabric.jpg" alt="Printed fabric detail" loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </Reveal>
           </div>
         </div>

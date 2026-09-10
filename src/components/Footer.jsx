@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid gap-12 md:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <img src="/images/logo-mark-raw.png" alt="" className="h-9 w-9 object-contain rounded-md" />
+            <img src="/images/logo-mark-raw.png" alt="" loading="lazy" decoding="async" className="h-9 w-9 object-contain rounded-md" />
             <span className="font-display font-semibold text-lg text-cream">Legacy Textile Solutions</span>
           </div>
           <p className="text-sm leading-relaxed text-cream/60 max-w-sm">

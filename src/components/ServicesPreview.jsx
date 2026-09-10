@@ -75,6 +75,8 @@ export default function ServicesPreview() {
                   <img
                     src={image}
                     alt={title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 40%, ${color}cc 100%)` }} />

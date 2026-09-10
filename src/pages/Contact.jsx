@@ -9,9 +9,15 @@ import {
   IconPin,
 } from "../components/icons";
 
+// Create a free form at https://formspree.io (takes ~2 minutes), then swap
+// this for your own form ID from the dashboard (looks like "xyzabcde").
+// Until then, submissions will fail gracefully with the error state below
+// rather than falsely claiming to have sent.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
 export default function Contact() {
   const location = useLocation();
-  const [status, setStatus] = useState("idle"); // idle | sent
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -19,12 +25,20 @@ export default function Contact() {
     message: "",
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // NOTE: no backend is wired up yet — this simply confirms receipt in the UI.
-    // Connect this to an email service (e.g. Formspree/EmailJS) or a small API
-    // route before relying on it to deliver real enquiries.
-    setStatus("sent");
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(e.target),
+      });
+      if (!res.ok) throw new Error("Form submission failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -112,6 +126,7 @@ export default function Contact() {
                     <Field label="Full name" required>
                       <input
                         required
+                        name="name"
                         value={form.name}
                         onChange={(e) =>
                           setForm({ ...form, name: e.target.value })
@@ -122,6 +137,7 @@ export default function Contact() {
                     </Field>
                     <Field label="Company">
                       <input
+                        name="company"
                         value={form.company}
                         onChange={(e) =>
                           setForm({ ...form, company: e.target.value })
@@ -135,6 +151,7 @@ export default function Contact() {
                     <input
                       required
                       type="email"
+                      name="email"
                       value={form.email}
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
@@ -147,6 +164,7 @@ export default function Contact() {
                     <textarea
                       required
                       rows={5}
+                      name="message"
                       value={form.message}
                       onChange={(e) =>
                         setForm({ ...form, message: e.target.value })
@@ -155,11 +173,24 @@ export default function Contact() {
                       placeholder="Tell us about your fabric, process and what you need..."
                     />
                   </Field>
+
+                  {status === "error" && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                      Couldn't send that — the form isn't connected to an inbox yet.
+                      Please reach us directly at{" "}
+                      <a href="mailto:info@legacy-textiles.com" className="underline">
+                        info@legacy-textiles.com
+                      </a>{" "}
+                      or +92 323 5292333 in the meantime.
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-cream font-semibold px-8 py-3.5 hover:bg-terracotta-light transition-all hover:gap-3"
+                    disabled={status === "sending"}
+                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-terracotta text-cream font-semibold px-8 py-3.5 hover:bg-terracotta-light transition-all hover:gap-3 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:gap-2"
                   >
-                    Send message{" "}
+                    {status === "sending" ? "Sending..." : "Send message"}
                     <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </form>
@@ -179,9 +210,10 @@ export default function Contact() {
           background: var(--color-cream);
           transition: border-color .2s;
         }
-        .input:focus {
+        .input:focus-visible {
           outline: none;
           border-color: var(--color-indigo);
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-indigo) 35%, transparent);
         }
       `}</style>
     </>

@@ -1,0 +1,13 @@
+{
+  "name": "Legacy Textile Solutions",
+  "short_name": "Legacy Textile",
+  "description": "Chemical partners for textile success — pretreatment, dyeing, printing and finishing chemicals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ec",
+  "theme_color": "#f7f3ec",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

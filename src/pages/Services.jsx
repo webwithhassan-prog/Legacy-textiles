@@ -81,7 +81,7 @@ export default function Services() {
             <div className="relative max-w-6xl mx-auto px-6 lg:px-10 py-24 sm:py-28">
               <div className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
                 <Reveal scale={0.94} className="rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3] ring-1 ring-white/10">
-                  <img src={p.image} alt={p.title} className="h-full w-full object-cover" />
+                  <img src={p.image} alt={p.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                 </Reveal>
                 <Reveal delay={0.1}>
                   <div
@@ -138,7 +138,7 @@ export default function Services() {
             </Reveal>
 
             <Reveal delay={0.15} className="rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/5]">
-              <img src="/images/chemical-drums.jpg" alt="Stored chemical drums ready for distribution" className="h-full w-full object-cover" />
+              <img src="/images/chemical-drums.jpg" alt="Stored chemical drums ready for distribution" loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </Reveal>
           </div>
         </div>
