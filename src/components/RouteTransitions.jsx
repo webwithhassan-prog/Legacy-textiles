@@ -24,26 +24,34 @@ export default function RouteTransitions() {
       }
     }
 
-    // Immediate reset avoids a visible flash of the old page's scroll
-    // position before the next frame runs.
-    window.scrollTo(0, 0);
+    // `behavior: "instant"` matters here, not just `scrollTo(0, 0)` — the
+    // site has `scroll-behavior: smooth` globally, so a plain scrollTo
+    // doesn't jump, it *animates* there over a few hundred ms. With two
+    // resets in play (this one, and the one after refresh() below) plus
+    // whatever refresh() itself does internally, those overlapping smooth
+    // animations could interrupt each other and settle at a random
+    // in-between scroll position instead of 0. Forcing "instant" makes each
+    // reset atomic, so there's nothing for a later call to interrupt.
+    const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    toTop();
 
     // refresh() has to stay deferred to the next frame — calling it
     // synchronously here can run before other components (e.g. the flask's
     // pinned ScrollTrigger) have set themselves up on first mount. But
     // refresh() itself recalculates pin geometry for any trigger left
     // behind by the page we just navigated away from, and was *itself*
-    // moving the scroll position — so scrollTo(0,0) has to run again AFTER
-    // it, in the same frame, not before. The try/catch is a safety net for
-    // a GSAP-internal null-ref that only reproduces under React StrictMode's
+    // moving the scroll position — so scrollTo has to run again AFTER it,
+    // in the same frame, not before. The try/catch is a safety net for a
+    // GSAP-internal null-ref that only reproduces under React StrictMode's
     // dev-only double-mount (production builds don't double-invoke effects).
     const id = requestAnimationFrame(() => {
       try {
         ScrollTrigger.refresh();
       } catch {
-        // see comment above — safe to ignore, scrollTo(0,0) below still runs
+        // see comment above — safe to ignore, toTop() below still runs
       }
-      window.scrollTo(0, 0);
+      toTop();
     });
     return () => cancelAnimationFrame(id);
   }, [pathname]);
