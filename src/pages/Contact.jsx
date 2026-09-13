@@ -8,6 +8,7 @@ import {
   IconPhone,
   IconPin,
 } from "../components/icons";
+import SentCheck from "../components/SentCheck";
 
 // Create a free form at https://formspree.io (takes ~2 minutes), then swap
 // this for your own form ID from the dashboard (looks like "xyzabcde").
@@ -109,7 +110,7 @@ export default function Contact() {
               {status === "sent" ? (
                 <div className="h-full min-h-[360px] flex flex-col items-center justify-center text-center py-10">
                   <div className="h-16 w-16 rounded-full bg-teal/15 text-teal flex items-center justify-center mb-6">
-                    <IconMail className="h-8 w-8" />
+                    <SentCheck className="h-9 w-9" />
                   </div>
                   <h3 className="font-display font-semibold text-2xl text-ink mb-3">
                     Message received

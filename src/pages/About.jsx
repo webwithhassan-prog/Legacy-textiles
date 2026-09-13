@@ -1,11 +1,14 @@
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import CtaBand from "../components/CtaBand";
+import MoleculeAccent from "../components/MoleculeAccent";
+import QualityGauge from "../components/QualityGauge";
+import ThreadWeave from "../components/ThreadWeave";
 import WaveDivider from "../components/WaveDivider";
-import { IconHeadset, IconLeaf, IconShield } from "../components/icons";
+import { IconHeadset, IconLeaf } from "../components/icons";
 
 const VALUES = [
-  { icon: IconShield, title: "Quality Assurance", desc: "Rigorous quality control in the production and distribution of every product we supply, meeting the highest industry standards for reliability." },
+  { icon: QualityGauge, title: "Quality Assurance", desc: "Rigorous quality control in the production and distribution of every product we supply, meeting the highest industry standards for reliability." },
   { icon: IconHeadset, title: "Technical Support", desc: "Extensive expertise in textile chemicals, with a team dedicated to personalized solutions and troubleshooting." },
   { icon: IconLeaf, title: "Innovation & Sustainability", desc: "Environmentally-conscious formulations that enhance the performance and quality of textiles without compromise." },
 ];
@@ -21,7 +24,7 @@ export default function About() {
         imageAlt="Yarn cones on pretreatment machinery"
       />
 
-      <section className="py-24 bg-cream">
+      <section className="relative overflow-hidden py-24 bg-cream">
         <div className="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-start">
           <Reveal>
             <p className="text-terracotta text-xs font-bold uppercase tracking-[0.25em] mb-4">Who we are</p>
@@ -58,9 +61,14 @@ export default function About() {
             </p>
           </Reveal>
         </div>
+
+        <WaveDivider color="#4a4272" />
       </section>
 
-      <section className="py-24 bg-cream-soft">
+      <ThreadWeave />
+
+      <section className="relative overflow-hidden py-24 bg-cream-soft">
+        <MoleculeAccent className="hidden md:block pointer-events-none absolute top-10 right-10 h-36 w-36 text-indigo/15" />
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <Reveal className="max-w-2xl mb-16 mx-auto text-center">
             <p className="text-terracotta text-xs font-bold uppercase tracking-[0.25em] mb-4">What guides us</p>

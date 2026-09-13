@@ -2,6 +2,12 @@ import { NavLink } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import CtaBand from "../components/CtaBand";
+import DenimWash from "../components/DenimWash";
+import DyeUptake from "../components/DyeUptake";
+import PatternStamp from "../components/PatternStamp";
+import PipetteDrop from "../components/PipetteDrop";
+import QuoteProcess from "../components/QuoteProcess";
+import WettingRipple from "../components/WettingRipple";
 import WaveDivider from "../components/WaveDivider";
 import {
   IconArrowRight,
@@ -23,7 +29,8 @@ const PROCESSES = [
     deep: "#35576a",
     image: "/images/pretreatment-machine.jpg",
     desc: "Before a fibre can take colour, it has to be ready for it. Our scouring, bleaching and desizing auxiliaries remove natural impurities and sizing agents, giving downstream dyeing and printing a clean, consistent, absorbent surface to work with.",
-    points: ["Scouring & desizing agents", "Bleaching auxiliaries", "Wetting & sequestering agents"],
+    points: ["Scouring & desizing agents", "Bleaching auxiliaries", "Wetting & sequestering agents", "Amylase & catalase enzymes for desizing and peroxide removal"],
+    visual: WettingRipple,
   },
   {
     icon: IconDroplet,
@@ -33,6 +40,7 @@ const PROCESSES = [
     image: "/images/hero-dyeing.jpg",
     desc: "Vivid, consistent, wash-fast colour is where our chemistry earns its keep. We supply the levelling agents, fixing agents and dye-bath auxiliaries that keep shade reproducible from lab dip to bulk production.",
     points: ["Reactive & disperse dye systems", "Levelling & fixing agents", "Shade-matching support"],
+    visual: DyeUptake,
   },
   {
     icon: IconSwatches,
@@ -42,6 +50,7 @@ const PROCESSES = [
     image: "/images/printing-fabric.jpg",
     desc: "From block print to digital, sharp definition depends on the chemistry behind the paste. Our print auxiliaries and binders deliver crisp edges and colour that holds up to repeated washing.",
     points: ["Pigment & reactive print pastes", "Binders & thickeners", "Colour-fastness solutions"],
+    visual: PatternStamp,
   },
   {
     icon: IconSparkle,
@@ -50,7 +59,7 @@ const PROCESSES = [
     deep: "#8f621a",
     image: "/images/finishing-fabric.jpg",
     desc: "The last step is what the customer actually feels. Softeners, coatings and performance finishes give fabric its final hand-feel, drape and functional properties before it leaves the mill.",
-    points: ["Softeners & handle modifiers", "Performance & functional coatings", "Anti-crease & durability finishes"],
+    points: ["Softeners & handle modifiers", "Performance & functional coatings", "Anti-crease & durability finishes", "Cellulase biopolishing & anti-back-staining for denim"],
   },
 ];
 
@@ -58,6 +67,7 @@ const SUPPORT = [
   { icon: IconFlask, title: "Textile Chemicals Supply", desc: "A wide, reliable supply of high-quality chemicals for dyeing, printing and finishing — sourced and stocked for manufacturers who can't afford downtime." },
   { icon: IconShield, title: "Quality Assurance", desc: "Rigorous quality control on production and distribution, so every drum that leaves us meets the standard your process is built around." },
   { icon: IconHeadset, title: "Technical Support", desc: "Personalized, hands-on troubleshooting from a team that understands textile chemistry — not just a call centre reading a datasheet." },
+  { icon: PipetteDrop, title: "Custom Formulation & Private Label", desc: "Custom chemical and enzyme blends, side-by-side comparison testing, and private-label supply for distributors and OEM partners." },
 ];
 
 export default function Services() {
@@ -103,6 +113,11 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
+                  {p.visual && (
+                    <Reveal delay={0.2} className="mt-8 rounded-2xl bg-black/15 p-4 ring-1 ring-white/10">
+                      <p.visual />
+                    </Reveal>
+                  )}
                 </Reveal>
               </div>
             </div>
@@ -111,6 +126,8 @@ export default function Services() {
           </section>
         );
       })}
+
+      <DenimWash />
 
       <section className="py-24 bg-ink relative overflow-hidden">
         <div className="pointer-events-none absolute top-0 left-1/3 h-96 w-96 rounded-full bg-indigo-light/20 blur-[110px]" />
@@ -142,7 +159,11 @@ export default function Services() {
             </Reveal>
           </div>
         </div>
+
+        <WaveDivider color="#efe9de" />
       </section>
+
+      <QuoteProcess />
 
       <section className="relative overflow-hidden py-20 bg-cream">
         <Reveal className="max-w-3xl mx-auto px-6 text-center">

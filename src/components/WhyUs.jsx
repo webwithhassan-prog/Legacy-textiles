@@ -37,6 +37,9 @@ export default function WhyUs() {
         </div>
 
         <div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 text-teal px-4 py-1.5 text-xs font-semibold mb-5">
+            <IconShield className="h-3.5 w-3.5" /> ZDHC Level 3 Certified
+          </div>
           <p className="text-terracotta text-xs font-bold uppercase tracking-[0.25em] mb-4">Why manufacturers choose us</p>
           <h2 className="font-display font-semibold text-3xl sm:text-4xl text-ink mb-6 max-w-lg">
             As leaders in textile chemical manufacturing and representation, quality drives everything we do
