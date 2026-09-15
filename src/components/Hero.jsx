@@ -86,7 +86,7 @@ export default function Hero() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your work email"
-                className="flex-1 bg-transparent px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo/50"
+                className="flex-1 bg-transparent px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 rounded-full focus:outline-none"
               />
               <Magnetic strength={0.25} className="inline-block shrink-0">
                 <button
