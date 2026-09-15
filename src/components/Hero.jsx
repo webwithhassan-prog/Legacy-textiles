@@ -121,6 +121,8 @@ export default function Hero() {
               src="/images/hero-dyeing.jpg"
               alt="Yarn being dyed in vivid colour baths"
               className="h-full w-full object-cover"
+              fetchPriority="high"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-indigo-dark/70 via-transparent to-transparent" />
 
