@@ -119,10 +119,21 @@ export default function QualityLab() {
       };
 
       const goToIndex = (idx) => {
-        gsap.to(panels[currentIndex], { autoAlpha: 0, y: -28, duration: 0.3, overwrite: true });
-        gsap.to(panels[idx], { autoAlpha: 1, y: 0, duration: 0.35, overwrite: true });
-        gsap.to(dots[currentIndex], { backgroundColor: "#d8d2c4", scale: 1, duration: 0.25, overwrite: true });
-        gsap.to(dots[idx], { backgroundColor: TESTS[idx].color, scale: 1.3, duration: 0.25, overwrite: true });
+        // Explicit target for every panel/dot each call (not just the pair
+        // being entered/left) — see the identical fix + rationale in
+        // ProcessJourney.jsx. A jumpy scrub can otherwise orphan a panel
+        // mid-crossfade holding a stale partial opacity forever.
+        panels.forEach((panel, i) => {
+          gsap.to(panel, { autoAlpha: i === idx ? 1 : 0, y: i === idx ? 0 : -28, duration: i === idx ? 0.35 : 0.3, overwrite: true });
+        });
+        dots.forEach((dot, i) => {
+          gsap.to(dot, {
+            backgroundColor: i === idx ? TESTS[idx].color : "#d8d2c4",
+            scale: i === idx ? 1.3 : 1,
+            duration: 0.25,
+            overwrite: true,
+          });
+        });
 
         gsap.to(padRef.current, { autoAlpha: idx === 0 ? 1 : 0, duration: 0.25 });
         gsap.to(bubbleWrapRef.current, { autoAlpha: idx === 1 ? 1 : 0, duration: 0.25 });

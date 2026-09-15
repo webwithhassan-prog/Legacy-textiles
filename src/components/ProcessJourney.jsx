@@ -145,10 +145,26 @@ export default function ProcessJourney() {
       let currentIndex = 0;
 
       const goToIndex = (idx) => {
-        gsap.to(panels[currentIndex], { autoAlpha: 0, y: -28, duration: 0.3, overwrite: true });
-        gsap.to(panels[idx], { autoAlpha: 1, y: 0, duration: 0.35, overwrite: true });
-        gsap.to(dots[currentIndex], { backgroundColor: "#d8d2c4", scale: 1, duration: 0.25, overwrite: true });
-        gsap.to(dots[idx], { backgroundColor: STAGES[idx].color, scale: 1.3, duration: 0.25, overwrite: true });
+        // Every panel/dot gets an explicit target on every call, not just
+        // the pair being entered/left — a fast or jumpy scrub can fire
+        // several onUpdate ticks before a prior crossfade finishes, and
+        // touching only the "from"/"to" pair each time trusted currentIndex
+        // to still match whatever was actually left visible. It doesn't
+        // always: a panel skipped over mid-jump could get orphaned holding
+        // a stale partial opacity forever. Setting all of them unconditionally
+        // (with overwrite:true) makes this self-correcting regardless of
+        // how it got here.
+        panels.forEach((panel, i) => {
+          gsap.to(panel, { autoAlpha: i === idx ? 1 : 0, y: i === idx ? 0 : -28, duration: i === idx ? 0.35 : 0.3, overwrite: true });
+        });
+        dots.forEach((dot, i) => {
+          gsap.to(dot, {
+            backgroundColor: i === idx ? STAGES[idx].color : "#d8d2c4",
+            scale: i === idx ? 1.3 : 1,
+            duration: 0.25,
+            overwrite: true,
+          });
+        });
 
         const colorTarget = { t: 0 };
         const fromHex = STAGES[currentIndex].color;
