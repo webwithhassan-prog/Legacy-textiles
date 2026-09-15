@@ -61,7 +61,7 @@ export default function Hero() {
 
       <div className="relative max-w-7xl w-full mx-auto px-6 lg:px-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center">
         <div>
-          <p className="hero-eyebrow inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-ink/60 bg-white ring-1 ring-ink/10 px-4 py-2 rounded-full mb-7">
+          <p className="hero-eyebrow inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-ink bg-white ring-1 ring-ink/10 px-4 py-2 rounded-full mb-7">
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
             Legacy Textile Solutions (Pvt) Ltd &mdash; Smart Chemical Solutions
           </p>

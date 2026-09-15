@@ -134,7 +134,7 @@ export default function Navbar() {
             <span className="block font-display font-semibold text-lg text-ink tracking-tight">
               Legacy Textile
             </span>
-            <span className="block text-[10px] uppercase tracking-[0.2em] text-indigo/70 -mt-0.5">
+            <span className="block text-[11px] font-semibold uppercase tracking-[0.15em] text-indigo -mt-0.5">
               Smart Chemical Solutions
             </span>
           </span>
