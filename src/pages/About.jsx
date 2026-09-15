@@ -3,6 +3,7 @@ import Reveal from "../components/Reveal";
 import CtaBand from "../components/CtaBand";
 import MoleculeAccent from "../components/MoleculeAccent";
 import QualityGauge from "../components/QualityGauge";
+import QualityLab from "../components/QualityLab";
 import ThreadWeave from "../components/ThreadWeave";
 import WaveDivider from "../components/WaveDivider";
 import { IconHeadset, IconLeaf } from "../components/icons";
@@ -89,7 +90,11 @@ export default function About() {
             ))}
           </Reveal>
         </div>
+
+        <WaveDivider color="#17151f" />
       </section>
+
+      <QualityLab />
 
       <section className="relative overflow-hidden py-24 bg-cream">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
